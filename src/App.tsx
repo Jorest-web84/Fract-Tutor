@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import lesson from './content/fractions.lesson.json';
 import { FractionInput } from './components/FractionInput';
 import { Progress } from './components/Progress';
@@ -18,7 +18,29 @@ export default function App() {
   const [input, setInput] = useState('');
   const [result, setResult] = useState<CheckResult | null>(null);
   const [hintLevel, setHintLevel] = useState(0);
-  const [tutorMessage, setTutorMessage] = useState(content.explain.tutorLines[0]);
+  const [tutorMessage, setTutorMessage] = useState(content.welcome.message);
+  const [hasStarted, setHasStarted] = useState(false);
+  const [speechEnabled, setSpeechEnabled] = useState(false);
+  const voiceAvailable = typeof window !== 'undefined' && 'speechSynthesis' in window && typeof SpeechSynthesisUtterance !== 'undefined';
+
+  useEffect(() => {
+    if (!hasStarted || !speechEnabled || !voiceAvailable) {
+      if (typeof window !== 'undefined' && 'speechSynthesis' in window) window.speechSynthesis.cancel();
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(tutorMessage);
+    utterance.lang = navigator.language || 'en';
+    utterance.rate = 0.96;
+    window.speechSynthesis.speak(utterance);
+    return () => window.speechSynthesis.cancel();
+  }, [hasStarted, speechEnabled, tutorMessage, voiceAvailable]);
+
+  function startLesson(withVoice: boolean) {
+    setSpeechEnabled(withVoice && voiceAvailable);
+    setTutorMessage(withVoice ? content.welcome.message : content.explain.tutorLines[0]);
+    setHasStarted(true);
+  }
 
   const stageIndex = stages.indexOf(stage);
   const section = content.sections.find((item) => item.id === stage);
@@ -106,6 +128,29 @@ export default function App() {
           ? practiceIndex === content.independent.steps.length - 1 ? 'Finish lesson' : 'Next line'
           : 'Start again';
 
+  if (!hasStarted) {
+    return (
+      <div className="app-shell welcome-shell">
+        <header className="topbar">
+          <a className="brand" href="#welcome" aria-label="Frac-Ground"><span className="brand__mark">fg<span>·</span></span><span className="brand__name">frac-<br />ground</span></a>
+          <div className="topbar__lesson"><span className="topbar__dot" /> MATHS · FRACTIONS</div>
+        </header>
+        <main className="welcome-screen" id="welcome">
+          <div className="welcome-screen__eyebrow">A SMALL MATHS LESSON</div>
+          <h1>{content.title}</h1>
+          <p className="welcome-screen__subtitle">{content.subtitle}</p>
+          <div className="welcome-screen__intro"><Tutor name={content.tutorName} message={content.welcome.message} /></div>
+          <div className="welcome-screen__actions">
+            <button className="voice-start" onClick={() => startLesson(true)} disabled={!voiceAvailable}>{content.welcome.startWithVoice}<span>↗</span></button>
+            <button className="silent-start" onClick={() => startLesson(false)}>{content.welcome.startWithoutVoice}</button>
+            <p>{content.welcome.voiceNote}</p>
+            {!voiceAvailable && <p className="voice-unavailable">Voice playback is not available in this browser. You can still take the lesson without voice.</p>}
+          </div>
+        </main>
+      </div>
+    );
+  }
+
   return (
     <div className="app-shell">
       <header className="topbar">
@@ -114,6 +159,7 @@ export default function App() {
           <span className="brand__name">frac-<br />ground</span>
         </a>
         <div className="topbar__lesson"><span className="topbar__dot" /> MATHS · FRACTIONS</div>
+        <button className="voice-toggle" onClick={() => { if (voiceAvailable) setSpeechEnabled((enabled) => !enabled); }} disabled={!voiceAvailable} aria-pressed={speechEnabled} aria-label={speechEnabled ? 'Turn voice off' : 'Turn voice on'}><span aria-hidden="true">{speechEnabled ? '◖' : '◗'}</span>{speechEnabled ? content.welcome.voiceOn : content.welcome.voiceOff}</button>
         <button className="reset-button" onClick={() => { setExplainIndex(0); setWorkedIndex(0); setPracticeIndex(0); goTo('explain'); }} aria-label="Restart lesson">↻ <span>Restart</span></button>
       </header>
 

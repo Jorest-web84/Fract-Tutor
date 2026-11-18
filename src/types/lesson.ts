@@ -13,6 +13,7 @@ export interface LessonContent {
   title: string;
   subtitle: string;
   tutorName: string;
+  welcome: { message: string; startWithVoice: string; startWithoutVoice: string; voiceNote: string; voiceOn: string; voiceOff: string };
   feedbackDefaults: { empty: string; fallback: string; hint: string };
   sections: { id: string; label: string; eyebrow: string }[];
   explain: { title: string; cards: { heading: string; body: string; mark: string }[]; tutorLines: string[] };

@@ -2,6 +2,14 @@
   "title": "Frac-Ground",
   "subtitle": "Adding fractions with different denominators",
   "tutorName": "Mika",
+  "welcome": {
+    "message": "Four steps, one new skill. I’m Mika. I’ll show you, then we’ll do one together, then you’ll do one on your own.",
+    "startWithVoice": "Start with voice",
+    "startWithoutVoice": "Start without voice",
+    "voiceNote": "You can turn voice on or off at any time.",
+    "voiceOn": "Voice on",
+    "voiceOff": "Voice off"
+  },
   "feedbackDefaults": {
     "empty": "Type a line of working first.",
     "fallback": "Not quite yet. Check the denominator and the numerators for this step, then try again. You can open a hint for a nudge.",
