@@ -1,0 +1,139 @@
+{
+  "title": "Frac-Ground",
+  "subtitle": "Adding fractions with different denominators",
+  "tutorName": "Mika",
+  "feedbackDefaults": {
+    "empty": "Type a line of working first.",
+    "fallback": "Not quite yet. Check the denominator and the numerators for this step, then try again. You can open a hint for a nudge.",
+    "hint": "Try dividing the numerator and denominator by their greatest common factor. If that factor is 1, the fraction is already simplest."
+  },
+  "sections": [
+    { "id": "explain", "label": "The idea", "eyebrow": "01 · GET THE IDEA" },
+    { "id": "worked", "label": "Watch", "eyebrow": "02 · WATCH A SOLUTION" },
+    { "id": "together", "label": "Together", "eyebrow": "03 · YOUR TURN, WITH HELP" },
+    { "id": "independent", "label": "Solo", "eyebrow": "04 · TRY IT YOURSELF" }
+  ],
+  "explain": {
+    "title": "Make the pieces the same size.",
+    "cards": [
+      { "heading": "Why change anything?", "body": "Thirds and quarters are different-sized pieces. You can only add the top numbers once both fractions describe the same-sized pieces.", "mark": "≠" },
+      { "heading": "Find a shared denominator", "body": "Choose a number both denominators divide into. The smallest one is usually easiest. It becomes the denominator for both fractions.", "mark": "↗" },
+      { "heading": "Make equivalent fractions", "body": "Multiply the top and bottom of each fraction by the same number. The fraction keeps its value while its pieces change size.", "mark": "＝" },
+      { "heading": "Add, then simplify", "body": "Add the numerators and keep the shared denominator. Reduce the answer if the top and bottom have a common factor.", "mark": "+" }
+    ],
+    "tutorLines": [
+      "We need pieces with the same size before we combine them.",
+      "Keep the value of each fraction the same as you rename it.",
+      "Now add the numerators. The denominator tells us the piece size, so it stays put."
+    ]
+  },
+  "worked": {
+    "title": "Let’s put it together.",
+    "prompt": "1/2 + 1/4",
+    "intro": "Watch how each line sets up the next one. Nothing changes the amount; we are only renaming the pieces.",
+    "steps": [
+      { "expression": "Common denominator: 4", "explanation": "Four is the smallest number that both 2 and 4 divide into. We’ll count both fractions in quarters.", "focus": "4" },
+      { "expression": "1/2 = 2/4     and     1/4 = 1/4", "explanation": "To turn halves into quarters, multiply top and bottom by 2. The quarter is already in the right-sized pieces.", "focus": "2/4" },
+      { "expression": "2/4 + 1/4 = 3/4", "explanation": "Now the pieces match, so add the numerators: 2 + 1 = 3. Keep the denominator 4.", "focus": "3/4" },
+      { "expression": "3/4 is already simplified", "explanation": "Three and four share no factor greater than 1, so this is the simplest form.", "focus": "3/4" }
+    ],
+    "wrapUp": "Same-sized pieces first. Add the tops. Keep the bottom. Simplify if you can."
+  },
+  "together": {
+    "title": "We’ll do one together.",
+    "prompt": "1/3 + 1/2",
+    "intro": "Type one line of working at a time. Use a slash for fractions, like 3/6. Ask for a hint whenever you need one.",
+    "steps": [
+      {
+        "prompt": "What shared denominator will you use?",
+        "helper": "Enter the denominator only, for example 6.",
+        "accepted": ["6"],
+        "mistakes": [
+          { "answer": "5", "feedback": "Adding 3 and 2 doesn’t make shared-sized pieces. Look for a number both 3 and 2 divide into." },
+          { "answer": "3", "feedback": "Three works for thirds, but not for halves. Find a number both denominators divide into." }
+        ],
+        "correctFeedback": "Yes. Both 3 and 2 divide into 6, so sixths will work."
+      },
+      {
+        "prompt": "Rename both fractions in sixths.",
+        "helper": "Type the equivalent fractions with a plus sign, like 2/6 + 3/6.",
+        "accepted": ["2/6+3/6"],
+        "mistakes": [
+          { "answer": "1/6+1/6", "feedback": "The denominator changed, so the numerator must change by the same multiplier. What did you multiply each bottom by?" },
+          { "answer": "2/6+1/6", "feedback": "The first fraction is right. To turn 1/2 into sixths, multiply its top and bottom by 3." }
+        ],
+        "correctFeedback": "That’s it. One third is two sixths, and one half is three sixths."
+      },
+      {
+        "prompt": "Add the numerators. What is the sum?",
+        "helper": "Enter the resulting fraction, such as 5/6.",
+        "accepted": ["5/6"],
+        "mistakes": [
+          { "answer": "5/12", "feedback": "You added the denominators too. Keep the shared denominator 6 and add only 2 + 3." }
+        ],
+        "correctFeedback": "Correct. Two sixths plus three sixths is five sixths."
+      },
+      {
+        "prompt": "Write the answer in simplest form.",
+        "helper": "If it cannot reduce, enter the same fraction again.",
+        "accepted": ["5/6"],
+        "equivalent": [{ "value": "10/12", "feedback": "That is equal to 5/6, but both numbers can still be divided by 2. Reduce it to simplest form." }],
+        "mistakes": [],
+        "correctFeedback": "Yes. Five and six have no common factor, so 5/6 is simplest."
+      }
+    ],
+    "finish": "You lined up the piece sizes, renamed both fractions, and combined them."
+  },
+  "independent": {
+    "title": "Your turn. You’ve got this.",
+    "prompt": "3/4 + 1/6",
+    "intro": "Work through each line on your own. The hint button stays here if you want a nudge.",
+    "steps": [
+      {
+        "prompt": "Choose a shared denominator.",
+        "helper": "Type the denominator only.",
+        "accepted": ["12"],
+        "mistakes": [
+          { "answer": "10", "feedback": "The sum of the denominators is not a shared denominator. Find a number both 4 and 6 divide into." },
+          { "answer": "6", "feedback": "Six is divisible by 6, but not by 4. Look for a common multiple of both." }
+        ],
+        "correctFeedback": "Good choice. Twelfths work for both fourths and sixths."
+      },
+      {
+        "prompt": "Rename both fractions in twelfths.",
+        "helper": "Type the equivalent fractions with a plus sign.",
+        "accepted": ["9/12+2/12"],
+        "mistakes": [
+          { "answer": "3/12+1/12", "feedback": "Changing the denominator changes the size of the pieces. Multiply each numerator by the same number as its denominator." },
+          { "answer": "9/12+1/12", "feedback": "The first fraction is right. To rename 1/6 in twelfths, multiply its top and bottom by 2." }
+        ],
+        "correctFeedback": "Exactly. Three fourths is nine twelfths, and one sixth is two twelfths."
+      },
+      {
+        "prompt": "Add the numerators.",
+        "helper": "Type the resulting fraction.",
+        "accepted": ["11/12"],
+        "equivalent": [{ "value": "11/24", "feedback": "Keep the common denominator 12. Add the numerators 9 + 2." }],
+        "mistakes": [
+          { "answer": "11/24", "feedback": "Keep the common denominator 12. Add the numerators 9 + 2." }
+        ],
+        "correctFeedback": "Right. Nine twelfths plus two twelfths is eleven twelfths."
+      },
+      {
+        "prompt": "Give the answer in simplest form.",
+        "helper": "Check whether the numerator and denominator share a factor.",
+        "accepted": ["11/12"],
+        "equivalent": [],
+        "mistakes": [],
+        "correctFeedback": "That’s the simplest form. Eleven and twelve share no common factor."
+      }
+    ],
+    "finish": "You handled every step without a worked solution in front of you."
+  },
+  "completion": {
+    "title": "You found common ground.",
+    "body": "You practised the full method for adding fractions with different denominators.",
+    "takeaway": "Find a common denominator → make equivalent fractions → add numerators → simplify.",
+    "tutorLine": "You’ve got a method you can use the next time the denominators don’t match."
+  }
+}
